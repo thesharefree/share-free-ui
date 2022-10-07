@@ -5,5 +5,5 @@ RUN npm install --force
 COPY . .
 RUN npm run build
 
-FROM nginx:1.23-alpin
+FROM nginx:1.23-alpine
 COPY --from=build /usr/src/app/dist/share-free-ui /usr/share/nginx/html
