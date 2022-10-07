@@ -30,9 +30,6 @@ jobs:
             az configure --defaults location=${{ env.LOCATION }}
             az configure --defaults group=${{ env.RESOURCE_GROUP }}
 
-        - name: Touch Azure Registery
-          run: az acr create -n ${{ env.CONTAINER_REGISTERY }} --sku Basic
-
         - name: Get env Secrets
           run: |
             SHARE_FREE_CORE_BASE_URL=$(az keyvault secret show --name "SHARE-FREE-CORE-BASE-URL" --vault-name ${{ env.KEY_VAULT }} --query "value")
