@@ -33,7 +33,7 @@ jobs:
         - name: Create environment.ts
           run: |
             touch src/environments/environment.ts
-            printf '${{ secrets.ALPHA_UI_ENV }}' >> src/environments/environment.ts
+            printf '${{ secrets.ALPHA_UI_ENV }}' > src/environments/environment.ts
         
         - name: Build & Push
           uses: azure/docker-login@v1
