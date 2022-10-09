@@ -1,0 +1,44 @@
+<div class="grid-container">
+  <h1 class="mat-h1">Queries</h1>
+  <div class="mat-elevation-z8">
+    <table mat-table class="full-width-table" matSort aria-label="Elements">
+
+      <ng-container matColumnDef="queryStr">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Query</th>
+        <td mat-cell *matCellDef="let row">{{row.queryStr}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="target">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Target</th>
+        <td mat-cell *matCellDef="let row">{{row.target}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="options">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Options</th>
+        <td mat-cell *matCellDef="let row">{{row.options}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="optionType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Option Type</th>
+        <td mat-cell *matCellDef="let row">{{row.optionType}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdBy">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Created By</th>
+        <td mat-cell *matCellDef="let row">{{row.createdBy}}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="createdDate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</th>
+        <td mat-cell *matCellDef="let row">{{row.createdDate}}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]" aria-label="Select page">
+    </mat-paginator>
+  </div>
+</div>
