@@ -5,12 +5,18 @@
 <p>
   <mat-form-field>
     <input type="email" matInput placeholder="Email" formControlName="email">
+    <mat-error *ngIf="!form.controls['email'].valid && form.controls['email'].touched">
+      Invalid Email
+    </mat-error>
   </mat-form-field>
 </p>
 
 <p>
   <mat-form-field>
     <input type="password" matInput placeholder="Password" formControlName="password">
+    <mat-error *ngIf="!form.controls['password'].valid && form.controls['password'].touched">
+      Password Required
+    </mat-error>
   </mat-form-field>
 </p>
 

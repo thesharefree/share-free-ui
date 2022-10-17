@@ -11,10 +11,15 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
   imports: [
+    FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -25,10 +30,14 @@ import { MatTableModule } from '@angular/material/table';
     MatMenuModule,
     MatInputModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSelectModule,
   ],
   exports: [
+    FormsModule,
+    ReactiveFormsModule,
     MatToolbarModule,
     MatButtonModule,
     MatSidenavModule,
@@ -39,8 +48,10 @@ import { MatTableModule } from '@angular/material/table';
     MatMenuModule,
     MatInputModule,
     MatButtonModule,
+    MatButtonToggleModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSelectModule,
   ],
 })
 export class MaterialModule {}

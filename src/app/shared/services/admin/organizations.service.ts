@@ -9,7 +9,9 @@ export class OrganizationsService {
   constructor(@SkipSelf() private httpClient: HttpClient) {}
 
   getOrganizations(): Observable<Organization[]> {
-    return this.httpClient.get<Organization[]>(environment.APP_BASE + '/organizations/all');
+    return this.httpClient.get<Organization[]>(
+      environment.APP_BASE + '/organizations/all'
+    );
   }
 
   getOrganization(organizationId: string): Observable<Organization> {
@@ -21,6 +23,20 @@ export class OrganizationsService {
   createOrganization(organization: Organization): Observable<any> {
     return this.httpClient.post<any>(
       environment.APP_BASE + '/organizations/create',
+      organization
+    );
+  }
+
+  toggleOrganization(organizationId: string): Observable<void> {
+    return this.httpClient.put<void>(
+      environment.APP_BASE + '/organizations/toggle/' + organizationId,
+      null
+    );
+  }
+
+  updateOrganization(organization: Organization): Observable<void> {
+    return this.httpClient.put<void>(
+      environment.APP_BASE + '/organizations/update/' + organization._id,
       organization
     );
   }

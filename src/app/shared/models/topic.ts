@@ -3,4 +3,5 @@ export class Topic {
   name: string = '';
   createdBy: string = '';
   createdDate: Date = new Date();
+  active: boolean = false;
 }

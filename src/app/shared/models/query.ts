@@ -6,4 +6,5 @@ export class Query {
   optionType?: string = '';
   createdBy: string = '';
   createdDate: Date = new Date();
+  active: boolean = false;
 }

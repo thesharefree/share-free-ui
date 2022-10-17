@@ -37,8 +37,6 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
-    ReactiveFormsModule,
     HttpClientModule,
     LayoutModule,
     MaterialModule,
