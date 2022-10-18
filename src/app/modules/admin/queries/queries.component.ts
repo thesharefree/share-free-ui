@@ -18,11 +18,23 @@ export class QueriesComponent implements AfterViewInit {
     []
   );
 
-  displayedColumns = ['queryStr', 'target', 'options', 'optionType', 'createdBy', 'createdDate'];
+  displayedColumns = [
+    'queryStr',
+    'target',
+    'options',
+    'optionType',
+    'createdBy',
+    'createdDate',
+    'actions',
+  ];
 
   constructor(private queriesService: QueriesService) {}
 
   ngAfterViewInit(): void {
+    this.getAllQueries();
+  }
+
+  getAllQueries() {
     this.queriesService.getQueries().subscribe({
       next: (queries) => {
         this.dataSource = new MatTableDataSource<Query>(queries);
@@ -33,4 +45,15 @@ export class QueriesComponent implements AfterViewInit {
       error: (error) => {},
     });
   }
+
+  toggle(query: Query) {
+    this.queriesService.toggleQuery(query._id).subscribe({
+      next: () => {
+        query.active = !query.active;
+      },
+      error: (error) => {},
+    });
+  }
+
+  createDiv() {}
 }

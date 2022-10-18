@@ -24,4 +24,11 @@ export class QueriesService {
       query
     );
   }
+
+  toggleQuery(queryId: string): Observable<void> {
+    return this.httpClient.put<void>(
+      environment.APP_BASE + '/queries/toggle/' + queryId,
+      null
+    );
+  }
 }

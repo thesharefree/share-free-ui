@@ -32,10 +32,11 @@ export class LoginComponent {
           this.form.value.email,
           this.form.value.password
         )
-        .then(fbUser => {
+        .then((fbUser) => {
           console.log('Firebase User', fbUser);
           this.router.navigate(['/admin']);
-        }).catch(error => {
+        })
+        .catch((error) => {
           this.error = error?.message;
         });
     } else {

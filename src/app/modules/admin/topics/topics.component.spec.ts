@@ -12,13 +12,13 @@ describe('TopicsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TopicsComponent ],
+      declarations: [TopicsComponent],
       imports: [
         NoopAnimationsModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-      ]
+      ],
     }).compileComponents();
   }));
 

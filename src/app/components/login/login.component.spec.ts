@@ -15,7 +15,7 @@ describe('LoginComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginComponent ],
+      declarations: [LoginComponent],
       imports: [
         NoopAnimationsModule,
         ReactiveFormsModule,
@@ -24,7 +24,7 @@ describe('LoginComponent', () => {
         MatInputModule,
         MatRadioModule,
         MatSelectModule,
-      ]
+      ],
     }).compileComponents();
   }));
 

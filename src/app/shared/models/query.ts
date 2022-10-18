@@ -7,4 +7,5 @@ export class Query {
   createdBy: string = '';
   createdDate: Date = new Date();
   active: boolean = false;
+  xref: boolean = false;
 }

@@ -24,7 +24,7 @@ describe('AdminComponent', () => {
         MatListModule,
         MatSidenavModule,
         MatToolbarModule,
-      ]
+      ],
     }).compileComponents();
   }));
 

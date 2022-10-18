@@ -1,6 +1,12 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
-    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false"
+  >
     <mat-toolbar>Share Free</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item [routerLink]="['dashboard']">Dashboard</a>
@@ -11,13 +17,23 @@
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
-      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async"
+      >
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <span>{{router.url}}</span>
+      <span>{{ router.url }}</span>
       <span class="example-spacer"></span>
-      <button type="button" mat-icon-button aria-label="Logout button" (click)="logout()">
+      <button
+        type="button"
+        mat-icon-button
+        aria-label="Logout button"
+        (click)="logout()"
+      >
         <mat-icon>exit_to_app</mat-icon>
       </button>
     </mat-toolbar>

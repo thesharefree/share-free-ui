@@ -45,7 +45,6 @@ export class OrganizationsComponent implements AfterViewInit {
       },
       error: (error) => {},
     });
-    this.editOrg = new Organization();
     this.createOrg = new Organization();
     this.createOrgDiv = false;
   }
@@ -54,10 +53,10 @@ export class OrganizationsComponent implements AfterViewInit {
     this.getAllOrganizations();
   }
 
-  toggle(_id: string) {
-    this.organizationsService.toggleOrganization(_id).subscribe({
+  toggle(org: Organization) {
+    this.organizationsService.toggleOrganization(org._id).subscribe({
       next: () => {
-        this.getAllOrganizations();
+        org.active = !org.active;
       },
       error: (error) => {},
     });
@@ -74,12 +73,14 @@ export class OrganizationsComponent implements AfterViewInit {
 
   create() {
     if (this.createForm.valid) {
-      this.organizationsService.createOrganization(this.createForm.getRawValue()).subscribe({
-        next: () => {
-          this.getAllOrganizations();
-        },
-        error: (error) => {},
-      });
+      this.organizationsService
+        .createOrganization(this.createForm.getRawValue())
+        .subscribe({
+          next: () => {
+            this.getAllOrganizations();
+          },
+          error: (error) => {},
+        });
     }
   }
 
@@ -88,19 +89,26 @@ export class OrganizationsComponent implements AfterViewInit {
     this.editForm = new FormGroup({
       _id: new FormControl(this.editOrg._id, [Validators.required]),
       name: new FormControl(this.editOrg.name, [Validators.required]),
-      owner: new FormControl(this.editOrg.owner, [Validators.required, Validators.email]),
-      description: new FormControl(this.editOrg.description, [Validators.required]),
+      owner: new FormControl(this.editOrg.owner, [
+        Validators.required,
+        Validators.email,
+      ]),
+      description: new FormControl(this.editOrg.description, [
+        Validators.required,
+      ]),
     });
   }
 
   update() {
     if (this.editForm.valid) {
-      this.organizationsService.updateOrganization(this.editForm.getRawValue()).subscribe({
-        next: () => {
-          this.getAllOrganizations();
-        },
-        error: (error) => {},
-      });
+      this.organizationsService
+        .updateOrganization(this.editForm.getRawValue())
+        .subscribe({
+          next: () => {
+            this.getAllOrganizations();
+          },
+          error: (error) => {},
+        });
     }
   }
 }

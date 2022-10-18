@@ -1,29 +1,170 @@
 <div class="grid-container">
-  <h1 class="mat-h1">Topics</h1>
+  <mat-toolbar>
+    <h1 class="mat-h1">Topics</h1>
+    <span class="example-spacer"></span>
+    <button
+      color="primary"
+      type="button"
+      mat-button
+      aria-label="create organization"
+      (click)="createDiv()"
+    >
+      Create
+    </button>
+  </mat-toolbar>
   <div class="mat-elevation-z8">
-    <table mat-table class="full-width-table" matSort aria-label="Elements">
-
+    <table
+      mat-table
+      [dataSource]="topicsDataSource"
+      class="full-width-table"
+      matSort
+      aria-label="Elements"
+    >
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
-        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+        <td mat-cell *matCellDef="let row">{{ row.name }}</td>
       </ng-container>
 
       <ng-container matColumnDef="createdBy">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Created By</th>
-        <td mat-cell *matCellDef="let row">{{row.createdBy}}</td>
+        <td mat-cell *matCellDef="let row">{{ row.createdBy }}</td>
       </ng-container>
 
       <ng-container matColumnDef="createdDate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Created Date</th>
-        <td mat-cell *matCellDef="let row">{{row.createdDate | date: 'dd/MM/yyyy'}}</td>
+        <td mat-cell *matCellDef="let row">
+          {{ row.createdDate | date: "dd/MM/yyyy" }}
+        </td>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <mat-cell *matCellDef="let row" style="white-space: nowrap">
+          <button mat-icon-button class="warning" (click)="editTopicDiv(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            class="success"
+            *ngIf="row.active"
+            (click)="toggle(row)"
+          >
+            <mat-icon>toggle_on</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            class="error"
+            *ngIf="!row.active"
+            (click)="toggle(row)"
+          >
+            <mat-icon>toggle_off</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="topicsColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: topicsColumns"></tr>
     </table>
 
-    <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="10"
-      [pageSizeOptions]="[5, 10, 20]" aria-label="Select page">
+    <mat-paginator
+      #paginator
+      [length]="topicsDataSource.data.length"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </div>
+  <br />
+  <div class="mat-elevation-z8" *ngIf="showCreateDiv">
+    <mat-toolbar>
+      <h1 class="mat-h1">New Topic</h1>
+    </mat-toolbar>
+    <form class="padding-30" [formGroup]="createForm" (ngSubmit)="create()">
+      <mat-form-field class="form-element">
+        <input type="text" matInput placeholder="Name" formControlName="name" />
+        <mat-error
+          *ngIf="
+            !createForm.controls['name'].valid &&
+            createForm.controls['name'].touched
+          "
+        >
+          Invalid Name
+        </mat-error>
+      </mat-form-field>
+
+      <div class="button">
+        <button mat-button type="submit">Create</button>
+      </div>
+    </form>
+  </div>
+  <br />
+  <div class="mat-elevation-z8" *ngIf="editTopic._id">
+    <mat-toolbar>
+      <h1 class="mat-h1">{{ editTopic.name }}</h1>
+    </mat-toolbar>
+    <table
+      mat-table
+      [dataSource]="queriesDataSource"
+      class="full-width-table"
+      matSort
+      aria-label="Elements"
+    >
+      <ng-container matColumnDef="queryStr">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Query</th>
+        <td mat-cell *matCellDef="let row">{{ row.queryStr }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="target">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Target</th>
+        <td mat-cell *matCellDef="let row">{{ row.target }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="options">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Options</th>
+        <td mat-cell *matCellDef="let row">{{ row.options }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="optionType">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Option Type</th>
+        <td mat-cell *matCellDef="let row">{{ row.optionType }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="actions">
+        <th mat-header-cell *matHeaderCellDef>Actions</th>
+        <mat-cell *matCellDef="let row" style="white-space: nowrap">
+          <button
+            mat-icon-button
+            class="success"
+            *ngIf="row.xref"
+            (click)="xrefToggle(editTopic._id, row)"
+          >
+            <mat-icon>toggle_on</mat-icon>
+          </button>
+          <button
+            mat-icon-button
+            class="error"
+            *ngIf="!row.xref"
+            (click)="xrefToggle(editTopic._id, row)"
+          >
+            <mat-icon>toggle_off</mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="queriesColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: queriesColumns"></tr>
+    </table>
+
+    <mat-paginator
+      #paginator
+      [length]="queriesDataSource.data.length"
+      [pageIndex]="0"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]"
+      aria-label="Select page"
+    >
     </mat-paginator>
   </div>
 </div>

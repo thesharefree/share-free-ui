@@ -12,13 +12,13 @@ describe('OrganizationsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ OrganizationsComponent ],
+      declarations: [OrganizationsComponent],
       imports: [
         NoopAnimationsModule,
         MatPaginatorModule,
         MatSortModule,
         MatTableModule,
-      ]
+      ],
     }).compileComponents();
   }));
 
