@@ -11,6 +11,8 @@ import { OrganizationsService } from 'src/app/shared/services/admin/organization
 import { QueriesService } from 'src/app/shared/services/admin/queries.service';
 import { QueriesComponent } from './queries/queries.component';
 import { QueryOptionsComponent } from './queries/query-options/query-options.component';
+import { UsersComponent } from './users/users.component';
+import { UsersService } from 'src/app/shared/services/admin/users.service';
 
 @NgModule({
   declarations: [
@@ -20,8 +22,9 @@ import { QueryOptionsComponent } from './queries/query-options/query-options.com
     QueriesComponent,
     QueryOptionsComponent,
     OrganizationsComponent,
+    UsersComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, MaterialModule],
-  providers: [TopicsService, OrganizationsService, QueriesService],
+  providers: [TopicsService, OrganizationsService, QueriesService, UsersService],
 })
 export class AdminModule {}

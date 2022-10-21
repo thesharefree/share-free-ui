@@ -1,4 +1,42 @@
 <div class="grid-container">
+  <div class="mat-elevation-z8" *ngIf="isCreateQuery">
+    <mat-toolbar>
+      <h1 class="mat-h1">New Query</h1>
+    </mat-toolbar>
+    <form class="padding-30" [formGroup]="createForm" (ngSubmit)="create()">
+      <mat-form-field class="form-element">
+        <input type="text" matInput formControlName="queryStr" placeholder="Query String" />
+        <mat-error *ngIf="
+            !createForm.controls['queryStr'].valid &&
+            createForm.controls['queryStr'].touched
+          ">
+          Invalid Query String
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <mat-label>Target</mat-label>
+        <mat-select [(value)]="createQuery.target" multiple required>
+          <mat-option value="USER">USER</mat-option>
+          <mat-option value="GROUP">GROUP</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <mat-label>Option Type</mat-label>
+        <mat-select [(value)]="createQuery.optionType" required>
+          <mat-option value="SINGLE">SINGLE</mat-option>
+          <mat-option value="MULTI">MULTI</mat-option>
+          <mat-option value=""></mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <app-query-options [options]="createForm.controls['options'].value"></app-query-options>
+
+      <div class="button">
+        <button mat-button type="submit">Create</button>
+      </div>
+    </form>
+  </div>
+  <br />
   <mat-toolbar>
     <h1 class="mat-h1">Queries</h1>
     <span class="example-spacer"></span>
@@ -65,44 +103,6 @@
     <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="10"
       [pageSizeOptions]="[5, 10, 20]" aria-label="Select page">
     </mat-paginator>
-  </div>
-  <br />
-  <div class="mat-elevation-z8" *ngIf="isCreateQuery">
-    <mat-toolbar>
-      <h1 class="mat-h1">New Query</h1>
-    </mat-toolbar>
-    <form class="padding-30" [formGroup]="createForm" (ngSubmit)="create()">
-      <mat-form-field class="form-element">
-        <input type="text" matInput formControlName="queryStr" placeholder="Query String" />
-        <mat-error *ngIf="
-            !createForm.controls['queryStr'].valid &&
-            createForm.controls['queryStr'].touched
-          ">
-          Invalid Query String
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="form-element">
-        <mat-label>Target</mat-label>
-        <mat-select [(value)]="createQuery.target" multiple required>
-          <mat-option value="USER">USER</mat-option>
-          <mat-option value="GROUP">GROUP</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="form-element">
-        <mat-label>Option Type</mat-label>
-        <mat-select [(value)]="createQuery.optionType" required>
-          <mat-option value="SINGLE">SINGLE</mat-option>
-          <mat-option value="MULTI">MULTI</mat-option>
-          <mat-option value=""></mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <app-query-options [options]="createForm.controls['options'].value"></app-query-options>
-
-      <div class="button">
-        <button mat-button type="submit">Create</button>
-      </div>
-    </form>
   </div>
   <br />
   <div class="mat-elevation-z8" *ngIf="editQuery._id">

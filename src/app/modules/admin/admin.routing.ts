@@ -5,6 +5,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { OrganizationsComponent } from './organizations/organizations.component';
 import { QueriesComponent } from './queries/queries.component';
 import { TopicsComponent } from './topics/topics.component';
+import { UsersComponent } from './users/users.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'topics', component: TopicsComponent },
       { path: 'organizations', component: OrganizationsComponent },
       { path: 'queries', component: QueriesComponent },
+      { path: 'users', component: UsersComponent },
     ],
   },
 ];
