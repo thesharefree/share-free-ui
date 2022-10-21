@@ -18,7 +18,6 @@ export class OrganizationsComponent implements AfterViewInit {
   public dataSource: MatTableDataSource<Organization> =
     new MatTableDataSource<Organization>([]);
 
-  error: string | null = null;
   displayedColumns = [
     'name',
     'description',

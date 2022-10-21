@@ -51,4 +51,10 @@ export class TopicsService {
       { params: params }
     );
   }
+
+  deleteTopic(topicId: string): Observable<void> {
+    return this.httpClient.delete<void>(
+      environment.APP_BASE + '/topics/' + topicId
+    );
+  }
 }

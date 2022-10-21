@@ -92,4 +92,15 @@ export class TopicsComponent implements AfterViewInit {
       });
     }
   }
+
+  delete(topic: Topic) {
+    if (confirm(`Delete ${topic.name}`)) {
+      this.topicsService.deleteTopic(topic._id).subscribe({
+        next: () => {
+          this.getAllTopics();
+        },
+        error: (error) => {},
+      });
+    }
+  }
 }

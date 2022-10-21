@@ -2,13 +2,7 @@
   <mat-toolbar>
     <h1 class="mat-h1">Queries</h1>
     <span class="example-spacer"></span>
-    <button
-      color="primary"
-      type="button"
-      mat-button
-      aria-label="create organization"
-      (click)="createDiv()"
-    >
+    <button color="primary" type="button" mat-button aria-label="create organization" (click)="createDiv()">
       Create
     </button>
   </mat-toolbar>
@@ -49,21 +43,17 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <mat-cell *matCellDef="let row" style="white-space: nowrap">
-          <button
-            mat-icon-button
-            class="success"
-            *ngIf="row.active"
-            (click)="toggle(row)"
-          >
+          <button mat-icon-button class="warning" (click)="editDiv(row)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button class="success" *ngIf="row.active" (click)="toggle(row)">
             <mat-icon>toggle_on</mat-icon>
           </button>
-          <button
-            mat-icon-button
-            class="error"
-            *ngIf="!row.active"
-            (click)="toggle(row)"
-          >
+          <button mat-icon-button class="error" *ngIf="!row.active" (click)="toggle(row)">
             <mat-icon>toggle_off</mat-icon>
+          </button>
+          <button mat-icon-button class="error" (click)="delete(row)">
+            <mat-icon>delete</mat-icon>
           </button>
         </mat-cell>
       </ng-container>
@@ -72,14 +62,84 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
 
-    <mat-paginator
-      #paginator
-      [length]="dataSource.data.length"
-      [pageIndex]="0"
-      [pageSize]="10"
-      [pageSizeOptions]="[5, 10, 20]"
-      aria-label="Select page"
-    >
+    <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]" aria-label="Select page">
     </mat-paginator>
+  </div>
+  <br />
+  <div class="mat-elevation-z8" *ngIf="isCreateQuery">
+    <mat-toolbar>
+      <h1 class="mat-h1">New Query</h1>
+    </mat-toolbar>
+    <form class="padding-30" [formGroup]="createForm" (ngSubmit)="create()">
+      <mat-form-field class="form-element">
+        <input type="text" matInput formControlName="queryStr" placeholder="Query String" />
+        <mat-error *ngIf="
+            !createForm.controls['queryStr'].valid &&
+            createForm.controls['queryStr'].touched
+          ">
+          Invalid Query String
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <mat-label>Target</mat-label>
+        <mat-select [(value)]="createQuery.target" multiple required>
+          <mat-option value="USER">USER</mat-option>
+          <mat-option value="GROUP">GROUP</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <mat-label>Option Type</mat-label>
+        <mat-select [(value)]="createQuery.optionType" required>
+          <mat-option value="SINGLE">SINGLE</mat-option>
+          <mat-option value="MULTI">MULTI</mat-option>
+          <mat-option value=""></mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <app-query-options [options]="createForm.controls['options'].value"></app-query-options>
+
+      <div class="button">
+        <button mat-button type="submit">Create</button>
+      </div>
+    </form>
+  </div>
+  <br />
+  <div class="mat-elevation-z8" *ngIf="editQuery._id">
+    <mat-toolbar>
+      <h1 class="mat-h1">{{ editQuery.queryStr }}</h1>
+    </mat-toolbar>
+    <form class="padding-30" [formGroup]="editForm" (ngSubmit)="update()">
+      <mat-form-field class="form-element">
+        <input type="text" matInput formControlName="queryStr" placeholder="Query String" />
+        <mat-error *ngIf="
+            !editForm.controls['queryStr'].valid &&
+            editForm.controls['queryStr'].touched
+          ">
+          Invalid Query String
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <mat-label>Target</mat-label>
+        <mat-select [(value)]="editQuery.target" multiple required>
+          <mat-option value="USER">USER</mat-option>
+          <mat-option value="GROUP">GROUP</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="form-element">
+        <mat-label>Option Type</mat-label>
+        <mat-select [(value)]="editQuery.optionType" required>
+          <mat-option value="SINGLE">SINGLE</mat-option>
+          <mat-option value="MULTI">MULTI</mat-option>
+          <mat-option value=""></mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <app-query-options [options]="editForm.controls['options'].value"></app-query-options>
+
+      <div class="button">
+        <button mat-button type="submit">Update</button>
+      </div>
+    </form>
   </div>
 </div>

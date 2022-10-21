@@ -31,4 +31,17 @@ export class QueriesService {
       null
     );
   }
+
+  deleteQuery(queryId: string): Observable<void> {
+    return this.httpClient.delete<void>(
+      environment.APP_BASE + '/queries/' + queryId
+    );
+  }
+
+  updateQuery(query: Query): Observable<any> {
+    return this.httpClient.put<any>(
+      environment.APP_BASE + '/queries/update/' + query._id,
+      query
+    );
+  }
 }

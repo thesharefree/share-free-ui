@@ -1,0 +1,8 @@
+<section>
+  <div class="query-options-label">Query Options:</div>
+  <div class="query-options-row">
+    <input type="text" [(ngModel)]="newOption" />
+    <button mat-button type="button" color="primary" (click)="add(newOption)">Add</button>
+    <button mat-button type="button" *ngFor="let option of options" (click)="delete(option)">x {{option}}</button>
+  </div>
+</section>
