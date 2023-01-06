@@ -1,7 +1,7 @@
 <div class="grid-container">
-  <div class="mat-elevation-z8" *ngIf="createOrgDiv">
+  <div class="mat-elevation-z8" *ngIf="createHouseDiv">
     <mat-toolbar>
-      <h1 class="mat-h1">New Organization</h1>
+      <h1 class="mat-h1">New House</h1>
     </mat-toolbar>
     <form class="padding-30" [formGroup]="createForm" (ngSubmit)="create()">
       <mat-form-field class="form-element">
@@ -59,13 +59,13 @@
   </div>
   <br />
   <mat-toolbar>
-    <h1 class="mat-h1">Organizations</h1>
+    <h1 class="mat-h1">Houses</h1>
     <span class="example-spacer"></span>
     <button
       color="primary"
       type="button"
       mat-button
-      aria-label="create organization"
+      aria-label="create house"
       (click)="createDiv()"
     >
       Create
@@ -140,9 +140,9 @@
     </mat-paginator>
   </div>
   <br />
-  <div class="mat-elevation-z8" *ngIf="editOrg._id">
+  <div class="mat-elevation-z8" *ngIf="editHouse._id">
     <mat-toolbar>
-      <h1 class="mat-h1">{{ editOrg.name }}</h1>
+      <h1 class="mat-h1">{{ editHouse.name }}</h1>
     </mat-toolbar>
     <form class="padding-30" [formGroup]="editForm" (ngSubmit)="update()">
       <mat-form-field class="form-element">

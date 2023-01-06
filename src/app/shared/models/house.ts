@@ -1,4 +1,4 @@
-export class Organization {
+export class House {
   _id: string = '';
   name: string = '';
   owner: string = '';

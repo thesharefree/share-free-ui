@@ -6,8 +6,8 @@ import { MaterialModule } from 'src/app/material.module';
 import { AdminRoutingModule } from './admin.routing';
 import { TopicsService } from 'src/app/shared/services/admin/topics.service';
 import { TopicsComponent } from './topics/topics.component';
-import { OrganizationsComponent } from './organizations/organizations.component';
-import { OrganizationsService } from 'src/app/shared/services/admin/organizations.service';
+import { HousesComponent } from './houses/houses.component';
+import { HousesService } from 'src/app/shared/services/admin/houses.service';
 import { QueriesService } from 'src/app/shared/services/admin/queries.service';
 import { QueriesComponent } from './queries/queries.component';
 import { QueryOptionsComponent } from './queries/query-options/query-options.component';
@@ -21,10 +21,10 @@ import { UsersService } from 'src/app/shared/services/admin/users.service';
     TopicsComponent,
     QueriesComponent,
     QueryOptionsComponent,
-    OrganizationsComponent,
+    HousesComponent,
     UsersComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, MaterialModule],
-  providers: [TopicsService, OrganizationsService, QueriesService, UsersService],
+  providers: [TopicsService, HousesService, QueriesService, UsersService],
 })
 export class AdminModule {}

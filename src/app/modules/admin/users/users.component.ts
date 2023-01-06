@@ -46,10 +46,10 @@ export class UsersComponent implements AfterViewInit {
     this.getAllUsers();
   }
 
-  toggle(org: User) {
-    this.usersService.toggleUser(org._id).subscribe({
+  toggle(house: User) {
+    this.usersService.toggleUser(house._id).subscribe({
       next: () => {
-        org.active = !org.active;
+        house.active = !house.active;
       },
       error: (error) => {},
     });
