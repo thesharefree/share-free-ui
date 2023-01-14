@@ -5,10 +5,10 @@ on:
 name: Build & Deploy to ACI
 env:
   LOCATION: centralindia
-  RESOURCE_GROUP: ShareFreeAlphaARG
-  CONTAINER_REGISTERY: sharefreealphaacr
+  RESOURCE_GROUP: ShareFreeARG
+  CONTAINER_REGISTERY: sharefreeacr
   APP_NAME: share-free-ui
-  WEBAPP_NAME: sharefreeuialpha
+  WEBAPP_NAME: sharefreeui
 jobs:
     build-and-deploy:
         runs-on: ubuntu-latest
@@ -20,7 +20,7 @@ jobs:
         - name: Login to Azure
           uses: azure/login@v1
           with:
-            creds: ${{ secrets.ALPHA_AZURE_CREDENTIALS }}
+            creds: ${{ secrets.PROD_AZURE_CREDENTIALS }}
 
         - name: Set default location
           run: |
@@ -30,14 +30,14 @@ jobs:
         - name: Create environment.ts
           run: |
             touch src/environments/environment.ts
-            printf '${{ secrets.ALPHA_UI_ENV }}' > src/environments/environment.ts
+            printf '${{ secrets.PROD_UI_ENV }}' > src/environments/environment.ts
         
         - name: Build & Push
           uses: azure/docker-login@v1
           with:
             login-server: ${{ env.CONTAINER_REGISTERY }}.azurecr.io
-            username: ${{ secrets.ALPHA_AZURE_USERNAME }}
-            password: ${{ secrets.ALPHA_AZURE_PASSWORD }}
+            username: ${{ secrets.PROD_AZURE_USERNAME }}
+            password: ${{ secrets.PROD_AZURE_PASSWORD }}
         - run: |
             docker build . -t ${{ env.APP_NAME }}:1.0.${{ github.run_number }}
             docker tag ${{ env.APP_NAME }}:1.0.${{ github.run_number }} ${{ env.CONTAINER_REGISTERY }}.azurecr.io/builds/${{ env.APP_NAME }}:1.0.${{ github.run_number }}
