@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - master
+      - production
 name: Build & Deploy to ACI
 env:
   LOCATION: centralindia
