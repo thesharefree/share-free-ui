@@ -11,15 +11,20 @@ import { HomeComponent } from './components/home/home.component';
 import { PolicyComponent } from './components/home/policy/policy.component';
 import { TermsComponent } from './components/home/terms/terms.component';
 import { LoginComponent } from './components/login/login.component';
+import { AboutComponent } from './components/home/about/about.component';
+import { ContactComponent } from './components/home/contact/contact.component';
+import { FaqComponent } from './components/home/faq/faq.component';
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(['login']);
 const redirectLoggedInToAdmin = () => redirectLoggedInTo(['admin']);
 
 const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
+  { path: 'about', component: AboutComponent },
   { path: 'terms', component: TermsComponent },
   { path: 'policy', component: PolicyComponent },
+  { path: 'faq', component: FaqComponent },
+  { path: 'contact', component: ContactComponent },
   {
     path: 'login',
     component: LoginComponent,
