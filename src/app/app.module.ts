@@ -22,13 +22,17 @@ import { environment } from '../environments/environment';
 import { provideAuth, getAuth } from '@angular/fire/auth';
 import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { AboutComponent } from './components/home/about/about.component';
+import { FaqComponent } from './components/home/faq/faq.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    AboutComponent,
     TermsComponent,
     PolicyComponent,
+    FaqComponent,
     P404Component,
     P500Component,
     LoginComponent,
