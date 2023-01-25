@@ -24,7 +24,6 @@ import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { AboutComponent } from './components/home/about/about.component';
 import { FaqComponent } from './components/home/faq/faq.component';
-import { ContactComponent } from './components/home/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +33,6 @@ import { ContactComponent } from './components/home/contact/contact.component';
     TermsComponent,
     PolicyComponent,
     FaqComponent,
-    ContactComponent,
     P404Component,
     P500Component,
     LoginComponent,
