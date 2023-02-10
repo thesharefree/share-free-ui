@@ -63,12 +63,12 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <mat-cell *matCellDef="let row" style="white-space: nowrap">
-          <button mat-icon-button class="warning" (click)="editTopicDiv(row)">
+          <button mat-icon-button style="color: orange;" (click)="editTopicDiv(row)">
             <mat-icon>edit</mat-icon>
           </button>
           <button
             mat-icon-button
-            class="success"
+            style="color: yellowgreen;"
             *ngIf="row.active"
             (click)="toggle(row)"
           >
@@ -76,13 +76,13 @@
           </button>
           <button
             mat-icon-button
-            class="error"
+            style="color: black;"
             *ngIf="!row.active"
             (click)="toggle(row)"
           >
             <mat-icon>toggle_off</mat-icon>
           </button>
-          <button mat-icon-button class="error" (click)="delete(row)">
+          <button mat-icon-button style="color: red;" (click)="delete(row)">
             <mat-icon>delete</mat-icon>
           </button>
         </mat-cell>
@@ -139,7 +139,7 @@
         <mat-cell *matCellDef="let row" style="white-space: nowrap">
           <button
             mat-icon-button
-            class="success"
+            style="color: yellowgreen;"
             *ngIf="row.xref"
             (click)="xrefToggle(editTopic._id, row)"
           >
@@ -147,7 +147,7 @@
           </button>
           <button
             mat-icon-button
-            class="error"
+            style="color: black;"
             *ngIf="!row.xref"
             (click)="xrefToggle(editTopic._id, row)"
           >

@@ -103,12 +103,12 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <mat-cell *matCellDef="let row" style="white-space: nowrap">
-          <button mat-icon-button class="warning" (click)="editDiv(row)">
+          <button mat-icon-button style="color: orange;" (click)="editDiv(row)">
             <mat-icon>edit</mat-icon>
           </button>
           <button
             mat-icon-button
-            class="success"
+            style="color: yellowgreen;"
             *ngIf="row.active"
             (click)="toggle(row)"
           >
@@ -116,7 +116,7 @@
           </button>
           <button
             mat-icon-button
-            class="error"
+            style="color: red;"
             *ngIf="!row.active"
             (click)="toggle(row)"
           >
