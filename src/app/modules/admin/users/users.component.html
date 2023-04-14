@@ -108,7 +108,7 @@
         <mat-cell *matCellDef="let row" style="white-space: nowrap">
           <button
             mat-icon-button
-            class="success"
+            style="color: yellowgreen;"
             *ngIf="row.active"
             (click)="toggle(row)"
           >
@@ -116,7 +116,7 @@
           </button>
           <button
             mat-icon-button
-            class="error"
+            style="color: black;"
             *ngIf="!row.active"
             (click)="toggle(row)"
           >
