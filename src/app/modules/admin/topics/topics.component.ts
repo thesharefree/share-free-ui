@@ -13,8 +13,10 @@ import { TopicsService } from 'src/app/shared/services/admin/topics.service';
   styleUrls: ['./topics.component.scss'],
 })
 export class TopicsComponent implements AfterViewInit {
-  @ViewChild(MatPaginator) paginator = new QueryList<MatPaginator>();
-  @ViewChild(MatSort) sort = new QueryList<MatSort>();
+  @ViewChild('topicPaginator', {read: MatPaginator}) topicPaginator!: MatPaginator;
+  @ViewChild('queryPaginator', {read: MatPaginator}) queryPaginator!: MatPaginator;
+  @ViewChild('topicSort', {read: MatSort}) topicSort!: MatSort;
+  @ViewChild('querySort', {read: MatSort}) querySort!: MatSort;
 
   showCreateDiv: boolean = false;
   createForm: FormGroup = new FormGroup({});
@@ -37,8 +39,8 @@ export class TopicsComponent implements AfterViewInit {
     this.topicsService.getTopics().subscribe({
       next: (topics) => {
         this.topicsDataSource = new MatTableDataSource<Topic>(topics);
-        this.topicsDataSource.sort = this.sort.toArray()[0];
-        this.topicsDataSource.paginator = this.paginator.toArray()[0];
+        this.topicsDataSource.sort = this.topicSort;
+        this.topicsDataSource.paginator = this.topicPaginator;
       },
       error: (error) => {},
     });
@@ -59,8 +61,8 @@ export class TopicsComponent implements AfterViewInit {
     this.topicsService.getTopicQueries(topic._id).subscribe({
       next: (queries) => {
         this.queriesDataSource = new MatTableDataSource<Query>(queries);
-        this.queriesDataSource.sort = this.sort.toArray()[1];
-        this.queriesDataSource.paginator = this.paginator.toArray()[1];
+        this.queriesDataSource.sort = this.querySort;
+        this.queriesDataSource.paginator = this.queryPaginator;
       },
       error: (error) => {},
     });
