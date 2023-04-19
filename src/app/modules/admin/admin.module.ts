@@ -13,6 +13,8 @@ import { QueriesComponent } from './queries/queries.component';
 import { QueryOptionsComponent } from './queries/query-options/query-options.component';
 import { UsersComponent } from './users/users.component';
 import { UsersService } from 'src/app/shared/services/admin/users.service';
+import { GroupsComponent } from './groups/groups.component';
+import { GroupsService } from 'src/app/shared/services/admin/groups.service';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,16 @@ import { UsersService } from 'src/app/shared/services/admin/users.service';
     QueriesComponent,
     QueryOptionsComponent,
     HousesComponent,
+    GroupsComponent,
     UsersComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, MaterialModule],
-  providers: [TopicsService, HousesService, QueriesService, UsersService],
+  providers: [
+    TopicsService,
+    HousesService,
+    GroupsService,
+    QueriesService,
+    UsersService,
+  ],
 })
 export class AdminModule {}

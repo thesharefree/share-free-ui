@@ -19,7 +19,7 @@ export class UsersComponent implements AfterViewInit {
     []
   );
 
-  displayedColumns = ['name', 'email', 'phone', 'roles', 'createdBy', 'createdDate', 'actions'];
+  displayedColumns = ['name', 'email', 'phone', 'createdDate', 'actions'];
   editUser: User = new User();
   editForm: FormGroup = new FormGroup({});
   createUser: User = new User();
