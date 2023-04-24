@@ -31,6 +31,9 @@
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
         <mat-cell *matCellDef="let row" style="white-space: nowrap">
+          <button mat-icon-button style="color: green;" (click)="notifyJoinGroup(row)">
+            <mat-icon>add_alert</mat-icon>
+          </button>
           <button mat-icon-button style="color: yellowgreen;" *ngIf="row.active" (click)="toggle(row)">
             <mat-icon>toggle_on</mat-icon>
           </button>
