@@ -49,18 +49,24 @@ export class GroupsComponent implements AfterViewInit {
   }
 
   delete(group: Group) {
-    this.groupsService.deleteGroup(group._id).subscribe({
-      next: () => { 
-        group.deleted = !group.deleted;
-      },
-      error: (error) => {},
-    });
+    const remove = confirm(`Delete group: '${group.name}'?`);
+    if (remove) {
+      this.groupsService.deleteGroup(group._id).subscribe({
+        next: () => {
+          group.deleted = !group.deleted;
+        },
+        error: (error) => {},
+      });
+    }
   }
 
   notifyJoinGroup(group: Group) {
-    this.groupsService.notifyJoinGroup(group._id).subscribe({
-      next: () => {},
-      error: (error) => {},
-    });
+    const annouce = confirm(`Annouce group: '${group.name}'?`);
+    if (annouce) {
+      this.groupsService.notifyJoinGroup(group._id).subscribe({
+        next: () => {},
+        error: (error) => {},
+      });
+    }
   }
 }
