@@ -26,9 +26,15 @@ export class GroupsService {
   }
 
   deleteGroup(groupId: string): Observable<void> {
-    return this.httpClient.put<void>(
-      environment.APP_BASE + '/groups/delete/' + groupId,
-      null
+    return this.httpClient.delete<void>(
+      environment.APP_BASE + '/groups/delete/' + groupId
     );
+  }
+
+  notifyJoinGroup(groupId: string): Observable<void> {
+    return this.httpClient.put<void>(
+      environment.APP_BASE + '/messages/notifyJoinGroup/' + groupId,
+      null
+    )
   }
 }

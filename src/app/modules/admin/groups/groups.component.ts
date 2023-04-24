@@ -15,16 +15,11 @@ export class GroupsComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
   @ViewChild(MatTable) table!: MatTable<Group>;
-  public dataSource: MatTableDataSource<Group> =
-    new MatTableDataSource<Group>([]);
+  public dataSource: MatTableDataSource<Group> = new MatTableDataSource<Group>(
+    []
+  );
 
-  displayedColumns = [
-    'name',
-    'description',
-    'owner',
-    'createdDate',
-    'actions',
-  ];
+  displayedColumns = ['name', 'description', 'owner', 'createdDate', 'actions'];
 
   constructor(private groupsService: GroupsService) {}
 
@@ -55,11 +50,17 @@ export class GroupsComponent implements AfterViewInit {
 
   delete(group: Group) {
     this.groupsService.deleteGroup(group._id).subscribe({
-      next: () => {
+      next: () => { 
         group.deleted = !group.deleted;
       },
       error: (error) => {},
     });
   }
 
+  notifyJoinGroup(group: Group) {
+    this.groupsService.notifyJoinGroup(group._id).subscribe({
+      next: () => {},
+      error: (error) => {},
+    });
+  }
 }
