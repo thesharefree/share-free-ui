@@ -15,6 +15,8 @@ import { UsersComponent } from './users/users.component';
 import { UsersService } from 'src/app/shared/services/admin/users.service';
 import { GroupsComponent } from './groups/groups.component';
 import { GroupsService } from 'src/app/shared/services/admin/groups.service';
+import { MessagingService } from 'src/app/shared/services/admin/messaging.service';
+import { AnnouncementsComponent } from './announcements/announcements.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,7 @@ import { GroupsService } from 'src/app/shared/services/admin/groups.service';
     HousesComponent,
     GroupsComponent,
     UsersComponent,
+    AnnouncementsComponent,
   ],
   imports: [CommonModule, AdminRoutingModule, MaterialModule],
   providers: [
@@ -34,6 +37,7 @@ import { GroupsService } from 'src/app/shared/services/admin/groups.service';
     GroupsService,
     QueriesService,
     UsersService,
+    MessagingService,
   ],
 })
 export class AdminModule {}

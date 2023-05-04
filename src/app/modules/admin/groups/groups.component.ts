@@ -1,10 +1,10 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Group } from 'src/app/shared/models/group';
 import { GroupsService } from 'src/app/shared/services/admin/groups.service';
+import { MessagingService } from 'src/app/shared/services/admin/messaging.service';
 
 @Component({
   selector: 'app-groups',
@@ -21,7 +21,10 @@ export class GroupsComponent implements AfterViewInit {
 
   displayedColumns = ['name', 'description', 'owner', 'createdDate', 'actions'];
 
-  constructor(private groupsService: GroupsService) {}
+  constructor(
+    private groupsService: GroupsService,
+    private messagingService: MessagingService
+  ) {}
 
   getAllGroups() {
     this.groupsService.getGroups().subscribe({
@@ -63,7 +66,7 @@ export class GroupsComponent implements AfterViewInit {
   notifyJoinGroup(group: Group) {
     const annouce = confirm(`Annouce group: '${group.name}'?`);
     if (annouce) {
-      this.groupsService.notifyJoinGroup(group._id).subscribe({
+      this.messagingService.notifyJoinGroup(group._id).subscribe({
         next: () => {},
         error: (error) => {},
       });

@@ -7,6 +7,7 @@ import { QueriesComponent } from './queries/queries.component';
 import { TopicsComponent } from './topics/topics.component';
 import { UsersComponent } from './users/users.component';
 import { GroupsComponent } from './groups/groups.component';
+import { AnnouncementsComponent } from './announcements/announcements.component';
 
 const routes: Routes = [
   {
@@ -20,6 +21,7 @@ const routes: Routes = [
       { path: 'groups', component: GroupsComponent },
       { path: 'queries', component: QueriesComponent },
       { path: 'users', component: UsersComponent },
+      { path: 'announcements', component: AnnouncementsComponent },
     ],
   },
 ];
