@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, QueryList, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
@@ -13,10 +13,12 @@ import { TopicsService } from 'src/app/shared/services/admin/topics.service';
   styleUrls: ['./topics.component.scss'],
 })
 export class TopicsComponent implements AfterViewInit {
-  @ViewChild('topicPaginator', {read: MatPaginator}) topicPaginator!: MatPaginator;
-  @ViewChild('queryPaginator', {read: MatPaginator}) queryPaginator!: MatPaginator;
-  @ViewChild('topicSort', {read: MatSort}) topicSort!: MatSort;
-  @ViewChild('querySort', {read: MatSort}) querySort!: MatSort;
+  @ViewChild('topicPaginator', { read: MatPaginator })
+  topicPaginator!: MatPaginator;
+  @ViewChild('queryPaginator', { read: MatPaginator })
+  queryPaginator!: MatPaginator;
+  @ViewChild('topicSort', { read: MatSort }) topicSort!: MatSort;
+  @ViewChild('querySort', { read: MatSort }) querySort!: MatSort;
 
   showCreateDiv: boolean = false;
   createForm: FormGroup = new FormGroup({});
