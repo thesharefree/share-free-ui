@@ -30,7 +30,7 @@
 
       <ng-container matColumnDef="actions">
         <th mat-header-cell *matHeaderCellDef>Actions</th>
-        <mat-cell *matCellDef="let row" style="white-space: nowrap">
+        <td mat-cell *matCellDef="let row">
           <button mat-icon-button style="color: green;" (click)="notifyJoinGroup(row)">
             <mat-icon>add_alert</mat-icon>
           </button>
@@ -43,7 +43,7 @@
           <button mat-icon-button style="color: red;" *ngIf="!row.deleted" (click)="delete(row)">
             <mat-icon>delete</mat-icon>
           </button>
-        </mat-cell>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

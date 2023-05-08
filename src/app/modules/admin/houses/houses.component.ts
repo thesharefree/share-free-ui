@@ -22,7 +22,6 @@ export class HousesComponent implements AfterViewInit {
     'name',
     'description',
     'owner',
-    'createdBy',
     'createdDate',
     'actions',
   ];

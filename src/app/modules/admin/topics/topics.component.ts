@@ -25,7 +25,7 @@ export class TopicsComponent implements AfterViewInit {
 
   public topicsDataSource: MatTableDataSource<Topic> =
     new MatTableDataSource<Topic>([]);
-  topicsColumns = ['name', 'createdBy', 'createdDate', 'actions'];
+  topicsColumns = ['name', 'actions'];
   editTopic: Topic = new Topic();
   public queriesDataSource: MatTableDataSource<Query> =
     new MatTableDataSource<Query>([]);
