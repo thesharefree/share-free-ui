@@ -25,3 +25,9 @@ body {
 .warning {
   color: orange;
 }
+
+td , th {
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 200px;
+}

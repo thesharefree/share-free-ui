@@ -23,8 +23,6 @@ export class QueriesComponent implements AfterViewInit {
     'target',
     'options',
     'optionType',
-    'createdBy',
-    'createdDate',
     'actions',
   ];
   editQuery: Query = new Query();
