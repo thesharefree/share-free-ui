@@ -9,7 +9,7 @@ export const environment = {
     messagingSenderId: '1020385458769',
     measurementId: 'G-W7NFGR4QPM',
   },
-  APP_BASE: 'https://sharefreecore.azurewebsites.net',
-  // APP_BASE: 'https://sharefreecorealpha.azurewebsites.net',
+  // APP_BASE: 'https://sharefreecore.azurewebsites.net',
+  APP_BASE: 'https://sharefreecorealpha.azurewebsites.net',
   production: false,
 };
