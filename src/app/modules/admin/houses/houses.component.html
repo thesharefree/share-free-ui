@@ -1,76 +1,34 @@
-<div class="grid-container">
-  <div class="mat-elevation-z8" *ngIf="createHouseDiv">
-    <mat-toolbar>
-      <h1 class="mat-h1">New House</h1>
-    </mat-toolbar>
-    <form class="padding-30" [formGroup]="createForm" (ngSubmit)="create()">
-      <mat-form-field class="form-element">
-        <input type="text" matInput placeholder="Name" formControlName="name" />
-        <mat-error
-          *ngIf="
-            !createForm.controls['name'].valid &&
-            createForm.controls['name'].touched
-          "
-        >
-          Invalid Name
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="form-element">
-        <input
-          type="text"
-          matInput
-          placeholder="Owner"
-          formControlName="owner"
-        />
-        <mat-error
-          *ngIf="
-            !createForm.controls['owner'].valid &&
-            createForm.controls['owner'].touched
-          "
-        >
-          Invalid Owner
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="form-element">
-        <textarea
-          matInput
-          placeholder="Description"
-          matTextareaAutosize
-          matAutosizeMinRows="2"
-          matAutosizeMaxRows="5"
-          formControlName="description"
-        ></textarea>
-        <mat-error
-          *ngIf="
-            !createForm.controls['description'].valid &&
-            createForm.controls['description'].touched
-          "
-        >
-          Decription Required, must be between 5 and 10 characters.
-        </mat-error>
-      </mat-form-field>
-
+<div class="flex flex-col mx-4 my-4">
+  <div class="flex flex-row px-4 mx-auto space-x-8">
+    <h1 class="flex text-2xl">Houses</h1>
+    <button color="primary" type="button"
+      class="text-white bg-gray-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+      aria-label="create house" (click)="createDiv()">
+      Create
+    </button>
+  </div>
+  <br />
+  <div *ngIf="createHouseDiv">
+    <form class="space-y-4 md:space-y-6" [formGroup]="createForm" (ngSubmit)="create()">
+      <h1 class="text-2xl">New House</h1>
+      <input type="text"
+        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Name" formControlName="name" />
+      <input type="text"
+        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Owner" formControlName="owner" />
+      <textarea
+        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Description" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"
+        formControlName="description"></textarea>
       <div class="button">
-        <button mat-button type="submit">Create</button>
+        <button
+          class="w-full text-white bg-gray-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          type="submit">Create</button>
       </div>
     </form>
   </div>
   <br />
-  <mat-toolbar>
-    <h1 class="mat-h1">Houses</h1>
-    <span class="example-spacer"></span>
-    <button
-      color="primary"
-      type="button"
-      mat-button
-      aria-label="create house"
-      (click)="createDiv()"
-    >
-      Create
-    </button>
-  </mat-toolbar>
   <div class="mat-elevation-z8">
     <table mat-table class="full-width-table" matSort aria-label="Elements">
       <ng-container matColumnDef="name">
@@ -106,20 +64,10 @@
           <button mat-icon-button style="color: orange;" (click)="editDiv(row)">
             <mat-icon>edit</mat-icon>
           </button>
-          <button
-            mat-icon-button
-            style="color: yellowgreen;"
-            *ngIf="row.active"
-            (click)="toggle(row)"
-          >
+          <button mat-icon-button style="color: yellowgreen;" *ngIf="row.active" (click)="toggle(row)">
             <mat-icon>toggle_on</mat-icon>
           </button>
-          <button
-            mat-icon-button
-            style="color: red;"
-            *ngIf="!row.active"
-            (click)="toggle(row)"
-          >
+          <button mat-icon-button style="color: red;" *ngIf="!row.active" (click)="toggle(row)">
             <mat-icon>toggle_off</mat-icon>
           </button>
         </td>
@@ -129,72 +77,28 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
 
-    <mat-paginator
-      #paginator
-      [length]="dataSource.data.length"
-      [pageIndex]="0"
-      [pageSize]="10"
-      [pageSizeOptions]="[5, 10, 20]"
-      aria-label="Select page"
-    >
+    <mat-paginator #paginator [length]="dataSource.data.length" [pageIndex]="0" [pageSize]="10"
+      [pageSizeOptions]="[5, 10, 20]" aria-label="Select page">
     </mat-paginator>
   </div>
   <br />
-  <div class="mat-elevation-z8" *ngIf="editHouse._id">
-    <mat-toolbar>
-      <h1 class="mat-h1">{{ editHouse.name }}</h1>
-    </mat-toolbar>
-    <form class="padding-30" [formGroup]="editForm" (ngSubmit)="update()">
-      <mat-form-field class="form-element">
-        <input type="text" matInput placeholder="Name" formControlName="name" />
-        <mat-error
-          *ngIf="
-            !editForm.controls['name'].valid &&
-            editForm.controls['name'].touched
-          "
-        >
-          Invalid Name
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="form-element">
-        <input
-          type="text"
-          matInput
-          placeholder="Owner"
-          formControlName="owner"
-        />
-        <mat-error
-          *ngIf="
-            !editForm.controls['owner'].valid &&
-            editForm.controls['owner'].touched
-          "
-        >
-          Invalid Owner
-        </mat-error>
-      </mat-form-field>
-
-      <mat-form-field class="form-element">
-        <textarea
-          matInput
-          placeholder="Description"
-          matTextareaAutosize
-          matAutosizeMinRows="2"
-          matAutosizeMaxRows="5"
-          formControlName="description"
-        ></textarea>
-        <mat-error
-          *ngIf="
-            !editForm.controls['description'].valid &&
-            editForm.controls['description'].touched
-          "
-        >
-          Decription Required, must be between 5 and 10 characters.
-        </mat-error>
-      </mat-form-field>
-
+  <div class="flex flex-col" *ngIf="editHouse._id">
+    <form class="space-y-4 md:space-y-6" [formGroup]="editForm" (ngSubmit)="update()">
+      <h1 class="text-xl">{{ editHouse.name }}</h1>
+      <input type="text"
+        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        matInput placeholder="Name" formControlName="name" />
+      <input type="text"
+        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        matInput placeholder="Owner" formControlName="owner" />
+      <textarea
+        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        placeholder="Description" matTextareaAutosize matAutosizeMinRows="2" matAutosizeMaxRows="5"
+        formControlName="description"></textarea>
       <div class="button">
-        <button mat-button type="submit">Update</button>
+        <button
+          class="text-white bg-gray-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          type="submit">Update</button>
       </div>
     </form>
   </div>

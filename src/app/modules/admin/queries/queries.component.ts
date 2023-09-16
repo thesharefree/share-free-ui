@@ -9,7 +9,6 @@ import { QueriesService } from 'src/app/shared/services/admin/queries.service';
 @Component({
   selector: 'app-queries',
   templateUrl: './queries.component.html',
-  styleUrls: ['./queries.component.scss'],
 })
 export class QueriesComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -96,7 +95,7 @@ export class QueriesComponent implements AfterViewInit {
   }
 
   createDiv() {
-    this.isCreateQuery = true;
+    this.isCreateQuery = !this.isCreateQuery;
     this.createQuery = new Query();
     this.createForm = new FormGroup({
       queryStr: new FormControl('', [Validators.required]),

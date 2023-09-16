@@ -1,49 +1,48 @@
-<div class="grid-container">
-  <div class="mat-elevation-z8" *ngIf="isCreateQuery">
-    <mat-toolbar>
-      <h1 class="mat-h1">New Query</h1>
-    </mat-toolbar>
-    <form class="padding-30" [formGroup]="createForm" (ngSubmit)="create()">
-      <mat-form-field class="form-element">
-        <input type="text" matInput formControlName="queryStr" placeholder="Query String" />
-        <mat-error *ngIf="
-            !createForm.controls['queryStr'].valid &&
-            createForm.controls['queryStr'].touched
-          ">
-          Invalid Query String
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="form-element">
-        <mat-label>Target</mat-label>
-        <mat-select [(value)]="createQuery.target" multiple required>
-          <mat-option value="USER">USER</mat-option>
-          <mat-option value="GROUP">GROUP</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="form-element">
-        <mat-label>Option Type</mat-label>
-        <mat-select [(value)]="createQuery.optionType" required>
-          <mat-option value="SINGLE">SINGLE</mat-option>
-          <mat-option value="MULTI">MULTI</mat-option>
-          <mat-option value=""></mat-option>
-        </mat-select>
-      </mat-form-field>
-
+<div class="flex flex-col mx-4 my-4">
+  <div class="flex flex-row px-4 mx-auto space-x-8">
+    <h1 class="text-2xl">Queries</h1>
+    <button
+      class="text-white bg-gray-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+      type="button" aria-label="create house" (click)="createDiv()">
+      Create
+    </button>
+  </div>
+  <br />
+  <div *ngIf="isCreateQuery">
+    <form class="space-y-4 md:space-y-6" [formGroup]="createForm" (ngSubmit)="create()">
+      <h1 class="text-xl">New Query</h1>
+      <div class="form-group">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Query</label>
+        <input type="text"
+          class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          formControlName="queryStr" placeholder="Query String" />
+      </div>
+      <div class="form-group">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Target</label>
+        <select [value]="createQuery.target" multiple required
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option value="USER">USER</option>
+          <option value="GROUP">GROUP</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Option Type</label>
+        <select [value]="createQuery.optionType" required
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option value="SINGLE">SINGLE</option>
+          <option value="MULTI">MULTI</option>
+          <option value=""></option>
+        </select>
+      </div>
       <app-query-options [options]="createForm.controls['options'].value"></app-query-options>
-
       <div class="button">
-        <button mat-button type="submit">Create</button>
+        <button
+          class="w-full text-white bg-gray-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          type="submit">Create</button>
       </div>
     </form>
   </div>
   <br />
-  <mat-toolbar>
-    <h1 class="mat-h1">Queries</h1>
-    <span class="example-spacer"></span>
-    <button color="primary" type="button" mat-button aria-label="create house" (click)="createDiv()">
-      Create
-    </button>
-  </mat-toolbar>
   <div class="mat-elevation-z8">
     <table mat-table class="full-width-table" matSort aria-label="Elements">
       <ng-container matColumnDef="queryStr">
@@ -107,38 +106,37 @@
   <br />
   <div class="mat-elevation-z8" *ngIf="editQuery._id">
     <mat-toolbar>
-      <h1 class="mat-h1">{{ editQuery.queryStr }}</h1>
     </mat-toolbar>
-    <form class="padding-30" [formGroup]="editForm" (ngSubmit)="update()">
-      <mat-form-field class="form-element">
-        <input type="text" matInput formControlName="queryStr" placeholder="Query String" />
-        <mat-error *ngIf="
-            !editForm.controls['queryStr'].valid &&
-            editForm.controls['queryStr'].touched
-          ">
-          Invalid Query String
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="form-element">
-        <mat-label>Target</mat-label>
-        <mat-select [(value)]="editQuery.target" multiple required>
-          <mat-option value="USER">USER</mat-option>
-          <mat-option value="GROUP">GROUP</mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="form-element">
-        <mat-label>Option Type</mat-label>
-        <mat-select [(value)]="editQuery.optionType" required>
-          <mat-option value="SINGLE">SINGLE</mat-option>
-          <mat-option value="MULTI">MULTI</mat-option>
-          <mat-option value=""></mat-option>
-        </mat-select>
-      </mat-form-field>
-
+    <form  class="space-y-4 md:space-y-6"  [formGroup]="editForm" (ngSubmit)="update()">
+      <h1 class="text-xl">{{ editQuery.queryStr }}</h1>
+      <div class="form-group">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Query</label>
+        <input type="text"
+          class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          formControlName="queryStr" placeholder="Query String" />
+      </div>
+      <div class="form-group">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Target</label>
+        <select [value]="editQuery.target" multiple required
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option value="USER">USER</option>
+          <option value="GROUP">GROUP</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Option Type</label>
+        <select [value]="editQuery.optionType" required
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+          <option value="SINGLE">SINGLE</option>
+          <option value="MULTI">MULTI</option>
+          <option value=""></option>
+        </select>
+      </div>
       <app-query-options [options]="editForm.controls['options'].value"></app-query-options>
-
       <div class="button">
-        <button mat-button type="submit">Update</button>
+        <button
+          class="w-full text-white bg-gray-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+          type="submit">Update</button>
       </div>
     </form>
   </div>

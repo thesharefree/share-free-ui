@@ -3,7 +3,6 @@ import { AfterViewInit, Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-query-options',
   templateUrl: './query-options.component.html',
-  styleUrls: ['./query-options.component.scss'],
 })
 export class QueryOptionsComponent implements OnInit {
   @Input() options: string[] | undefined = [];
