@@ -7,7 +7,6 @@ import { Patterns } from 'src/app/shared/patterns/patterns';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
 })
 export class LoginComponent {
   constructor(private router: Router, private auth: AngularFireAuth) {}
@@ -26,6 +25,7 @@ export class LoginComponent {
   });
 
   login() {
+    console.log(this.form.value);
     if (this.form.valid) {
       this.auth
         .signInWithEmailAndPassword(
