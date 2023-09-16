@@ -3,7 +3,6 @@ import { ViewportScroller } from '@angular/common';
 
 @Component({
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
   contact: any;

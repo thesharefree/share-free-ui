@@ -1,33 +1,37 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
+// @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-.padding-30 {
-  padding: 30px;
-}
+// html,
+// body {
+//   height: 100%;
+// }
+// body {
+//   margin: 0;
+//   font-family: Roboto, "Helvetica Neue", sans-serif;
+// }
 
-.error {
-  color: red;
-}
+// .padding-30 {
+//   padding: 30px;
+// }
 
-.success {
-  color: green;
-}
+// .error {
+//   color: red;
+// }
 
-.warning {
-  color: orange;
-}
+// .success {
+//   color: green;
+// }
 
-td , th {
-  white-space: normal;
-  word-wrap: break-word;
-  max-width: 200px;
-}
+// .warning {
+//   color: orange;
+// }
+
+// td , th {
+//   white-space: normal;
+//   word-wrap: break-word;
+//   max-width: 200px;
+// }
