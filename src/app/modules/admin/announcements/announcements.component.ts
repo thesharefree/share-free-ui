@@ -25,7 +25,7 @@ export class AnnouncementsComponent implements AfterViewInit {
   }
 
   createDiv() {
-    this.isCreateAnnouncement = true;
+    this.isCreateAnnouncement = !this.isCreateAnnouncement;
     this.initForm();
   }
 

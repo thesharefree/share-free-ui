@@ -57,10 +57,17 @@ export class UsersComponent implements AfterViewInit {
   createDiv() {
     this.createForm = new FormGroup({
       name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(8)]),
-      phone: new FormControl('', [Validators.required, Validators.minLength(10)]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email,
+        Validators.minLength(8),
+      ]),
+      phone: new FormControl('', [
+        Validators.required,
+        Validators.minLength(10),
+      ]),
     });
-    this.createUserDiv = true;
+    this.createUserDiv = !this.createUserDiv;
   }
 
   create() {

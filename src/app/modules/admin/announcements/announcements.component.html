@@ -1,35 +1,31 @@
-<div class="grid-container">
-  <div class="mat-elevation-z8">
-    <mat-toolbar>
-      <h1 class="mat-h1">New Announcement</h1>
-      <span class="example-spacer"></span>
-      <button color="primary" type="button" mat-button aria-label="create house" (click)="createDiv()">
-        Create
-      </button>
-    </mat-toolbar>
-    <form class="padding-30" *ngIf="isCreateAnnouncement" [formGroup]="announceForm" (ngSubmit)="generalAnnouncement()">
-      <mat-form-field class="form-element">
-        <input type="text" matInput formControlName="title" placeholder="Title" />
-        <mat-error *ngIf="
-            !announceForm.controls['title'].valid &&
-            announceForm.controls['title'].touched
-          ">
-          Invalid Title
-        </mat-error>
-      </mat-form-field>
-      <mat-form-field class="form-element">
-        <textarea rows="5" matInput formControlName="message" placeholder="Message"></textarea>
-        <mat-error *ngIf="
-            !announceForm.controls['message'].valid &&
-            announceForm.controls['message'].touched
-          ">
-          Invalid Message
-        </mat-error>
-      </mat-form-field>
-
-      <div class="button">
-        <button mat-button type="submit">Announce</button>
-      </div>
-    </form>
+<div class="flex flex-col mx-4 my-4">
+  <div class="flex flex-row px-4 mx-auto space-x-8">
+    <h1 class="text-2xl">New Announcement</h1>
+    <button color="primary" type="button"
+      class="text-white bg-gray-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+      aria-label="create house" (click)="createDiv()">
+      Create
+    </button>
   </div>
+  <form class="space-y-4 md:space-y-6" *ngIf="isCreateAnnouncement" [formGroup]="announceForm"
+    (ngSubmit)="generalAnnouncement()">
+    <div class="form-group">
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
+      <input type="text"
+        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        formControlName="title" placeholder="Title" />
+    </div>
+    <div class="form-group">
+      <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Message</label>
+      <textarea rows="5"
+        class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+        formControlName="message" placeholder="Message"></textarea>
+    </div>
+
+    <div class="button">
+      <button
+        class="w-full text-white bg-gray-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+        type="submit">Announce</button>
+    </div>
+  </form>
 </div>
