@@ -19,22 +19,24 @@
       </div>
       <div class="form-group">
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Target</label>
-        <select [value]="createQuery.target" multiple required
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-          <option value="USER">USER</option>
-          <option value="GROUP">GROUP</option>
-        </select>
+        <label><input type="checkbox" [checked]="targetSelected(createQuery, 'USER')" value="USER"
+            (change)="targetChange(createQuery, $event)" /> USER </label>
+        <label><input type="checkbox" [checked]="targetSelected(createQuery, 'GROUP')" value="GROUP"
+            (change)="targetChange(createQuery, $event)" /> GROUP </label>
       </div>
       <div class="form-group">
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Option Type</label>
-        <select [value]="createQuery.optionType" required
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-          <option value="SINGLE">SINGLE</option>
-          <option value="MULTI">MULTI</option>
-          <option value=""></option>
-        </select>
+        <label><input type="radio" [checked]="optionTypeSelected(createQuery, 'SINGLE')"
+            (change)="optionTypeChange(createQuery, $event)" value="SINGLE" /> SINGLE </label>
+        <label><input type="radio" [checked]="optionTypeSelected(createQuery, 'MULTI')"
+            (change)="optionTypeChange(createQuery, $event)" value="MULTI" /> MULTI </label>
+        <label><input type="radio" [checked]="optionTypeSelected(createQuery, '')"
+            (change)="optionTypeChange(createQuery, $event)" value="" /> NONE </label>
       </div>
-      <app-query-options [options]="createForm.controls['options'].value"></app-query-options>
+      <div class="form-group">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Query Options</label>
+        <app-query-options [options]="createForm.controls['options'].value"></app-query-options>
+      </div>
       <div class="button">
         <button
           class="w-full text-white bg-gray-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
@@ -42,6 +44,8 @@
       </div>
     </form>
   </div>
+  <br />
+  <hr />
   <br />
   <div class="mat-elevation-z8">
     <table mat-table class="full-width-table" matSort aria-label="Elements">
@@ -104,10 +108,12 @@
     </mat-paginator>
   </div>
   <br />
+  <hr />
+  <br />
   <div class="mat-elevation-z8" *ngIf="editQuery._id">
     <mat-toolbar>
     </mat-toolbar>
-    <form  class="space-y-4 md:space-y-6"  [formGroup]="editForm" (ngSubmit)="update()">
+    <form class="space-y-4 md:space-y-6" [formGroup]="editForm" (ngSubmit)="update()">
       <h1 class="text-xl">{{ editQuery.queryStr }}</h1>
       <div class="form-group">
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Query</label>
@@ -117,22 +123,24 @@
       </div>
       <div class="form-group">
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Target</label>
-        <select [value]="editQuery.target" multiple required
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-          <option value="USER">USER</option>
-          <option value="GROUP">GROUP</option>
-        </select>
+        <label><input type="checkbox" [checked]="targetSelected(editQuery, 'USER')" value="USER"
+            (change)="targetChange(editQuery, $event)" /> USER </label>
+        <label><input type="checkbox" [checked]="targetSelected(editQuery, 'GROUP')" value="GROUP"
+            (change)="targetChange(editQuery, $event)" /> GROUP </label>
       </div>
       <div class="form-group">
         <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Option Type</label>
-        <select [value]="editQuery.optionType" required
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-          <option value="SINGLE">SINGLE</option>
-          <option value="MULTI">MULTI</option>
-          <option value=""></option>
-        </select>
+        <label><input type="radio" [checked]="optionTypeSelected(editQuery, 'SINGLE')"
+            (change)="optionTypeChange(editQuery, $event)" value="SINGLE" /> SINGLE </label>
+        <label><input type="radio" [checked]="optionTypeSelected(editQuery, 'MULTI')"
+            (change)="optionTypeChange(editQuery, $event)" value="MULTI" /> MULTI </label>
+        <label><input type="radio" [checked]="optionTypeSelected(editQuery, '')"
+            (change)="optionTypeChange(editQuery, $event)" value="" /> NONE </label>
       </div>
-      <app-query-options [options]="editForm.controls['options'].value"></app-query-options>
+      <div class="form-group">
+        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Query Options</label>
+        <app-query-options [options]="editForm.controls['options'].value"></app-query-options>
+      </div>
       <div class="button">
         <button
           class="w-full text-white bg-gray-700 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"

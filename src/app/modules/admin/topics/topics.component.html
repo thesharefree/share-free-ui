@@ -24,6 +24,8 @@
     </form>
   </div>
   <br />
+  <hr />
+  <br />
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="topicsDataSource" class="full-width-table" matSort aria-label="Elements">
       <ng-container matColumnDef="name">
@@ -69,6 +71,8 @@
       [pageSizeOptions]="[5, 10, 20]" aria-label="Select page">
     </mat-paginator>
   </div>
+  <br />
+  <hr />
   <br />
   <div class="mat-elevation-z8" *ngIf="editTopic._id">
     <mat-toolbar>
