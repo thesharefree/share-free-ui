@@ -9,7 +9,6 @@ import { QueriesService } from 'src/app/shared/services/admin/queries.service';
 @Component({
   selector: 'app-queries',
   templateUrl: './queries.component.html',
-  styleUrls: ['./queries.component.scss'],
 })
 export class QueriesComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -18,13 +17,7 @@ export class QueriesComponent implements AfterViewInit {
   public dataSource: MatTableDataSource<Query> = new MatTableDataSource<Query>(
     []
   );
-  displayedColumns = [
-    'queryStr',
-    'target',
-    'options',
-    'optionType',
-    'actions',
-  ];
+  displayedColumns = ['queryStr', 'target', 'options', 'optionType', 'actions'];
   editQuery: Query = new Query();
   editForm: FormGroup = new FormGroup({});
 
@@ -73,6 +66,26 @@ export class QueriesComponent implements AfterViewInit {
     }
   }
 
+  targetChange(obj: Query, $event: any) {
+    if ($event.target.checked) {
+      obj.target.push($event.target.value);
+    } else {
+      obj.target.splice(obj.target.indexOf($event.target.value));
+    }
+  }
+
+  targetSelected(obj: Query, value: string) {
+    return obj.target.includes(value);
+  }
+
+  optionTypeChange(obj: Query, $event: any) {
+    obj.optionType = $event.target.value;
+  }
+
+  optionTypeSelected(obj: Query, value: string) {
+    return obj.optionType === value;
+  }
+
   editDiv(query: Query) {
     this.editQuery = query;
     this.editForm = new FormGroup({
@@ -96,7 +109,7 @@ export class QueriesComponent implements AfterViewInit {
   }
 
   createDiv() {
-    this.isCreateQuery = true;
+    this.isCreateQuery = !this.isCreateQuery;
     this.createQuery = new Query();
     this.createForm = new FormGroup({
       queryStr: new FormControl('', [Validators.required]),

@@ -11,10 +11,14 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.scss'],
 })
 export class AdminComponent implements OnInit {
   public topics: Topic[] = [];
+
+  showMenu = false;
+  toggleNavbar(){
+    this.showMenu = !this.showMenu;
+  }
 
   isHandset$: Observable<boolean> = this.breakpointObserver
     .observe(Breakpoints.Handset)

@@ -9,7 +9,6 @@ import { Group } from 'src/app/shared/models/group';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements AfterViewInit {
   constructor(private usersService: UsersService, private groupsService: GroupsService) {}

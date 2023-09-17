@@ -9,7 +9,6 @@ import { MessagingService } from 'src/app/shared/services/admin/messaging.servic
 @Component({
   selector: 'app-groups',
   templateUrl: './groups.component.html',
-  styleUrls: ['./groups.component.scss'],
 })
 export class GroupsComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
