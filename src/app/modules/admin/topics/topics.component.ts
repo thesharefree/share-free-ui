@@ -10,7 +10,6 @@ import { TopicsService } from 'src/app/shared/services/admin/topics.service';
 @Component({
   selector: 'app-topics',
   templateUrl: './topics.component.html',
-  styleUrls: ['./topics.component.scss'],
 })
 export class TopicsComponent implements AfterViewInit {
   @ViewChild('topicPaginator', { read: MatPaginator })
@@ -83,7 +82,7 @@ export class TopicsComponent implements AfterViewInit {
     this.createForm = new FormGroup({
       name: new FormControl('', [Validators.required]),
     });
-    this.showCreateDiv = true;
+    this.showCreateDiv = !this.showCreateDiv;
   }
 
   create() {

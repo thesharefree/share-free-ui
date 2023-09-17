@@ -9,7 +9,6 @@ import { HousesService } from 'src/app/shared/services/admin/houses.service';
 @Component({
   selector: 'app-houses',
   templateUrl: './houses.component.html',
-  styleUrls: ['./houses.component.scss'],
 })
 export class HousesComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
@@ -66,7 +65,7 @@ export class HousesComponent implements AfterViewInit {
       owner: new FormControl('', [Validators.required, Validators.email]),
       description: new FormControl('', [Validators.required]),
     });
-    this.createHouseDiv = true;
+    this.createHouseDiv = !this.createHouseDiv;
   }
 
   create() {

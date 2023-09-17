@@ -5,7 +5,6 @@ import { MessagingService } from 'src/app/shared/services/admin/messaging.servic
 @Component({
   selector: 'app-announcements',
   templateUrl: './announcements.component.html',
-  styleUrls: ['./announcements.component.scss'],
 })
 export class AnnouncementsComponent implements AfterViewInit {
 
@@ -26,7 +25,7 @@ export class AnnouncementsComponent implements AfterViewInit {
   }
 
   createDiv() {
-    this.isCreateAnnouncement = true;
+    this.isCreateAnnouncement = !this.isCreateAnnouncement;
     this.initForm();
   }
 

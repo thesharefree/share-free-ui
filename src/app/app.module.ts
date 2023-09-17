@@ -24,11 +24,15 @@ import { AngularFireAuthGuardModule } from '@angular/fire/compat/auth-guard';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { AboutComponent } from './components/home/about/about.component';
 import { FaqComponent } from './components/home/faq/faq.component';
+import { NavbarComponent } from './components/home/navbar/navbar.component';
+import { FooterComponent } from './components/home/footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
+    NavbarComponent,
+    FooterComponent,
     AboutComponent,
     TermsComponent,
     PolicyComponent,
