@@ -1,4 +1,4 @@
-<nav class="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 bg-gray-700">
+<nav class="top-0 absolute z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 bg-black">
   <div class="container px-4 mx-auto flex flex-wrap items-center justify-between">
     <div class="w-full relative flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
       <a class="flex space-between text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase text-white"
@@ -10,16 +10,17 @@
         <i class="text-white fas fa-bars"></i>
       </button>
     </div>
-    <div class="lg:flex flex-grow items-center bg-white lg:bg-transparent lg:shadow-none"
+    <div class="lg:flex flex-grow items-center bg-black lg:bg-transparent lg:shadow-none"
       [ngClass]="{'hidden': !showMenu, 'block': showMenu}">
+      <hr class="mt-2" />
       <ul class="flex flex-col lg:flex-row list-none lg:ml-auto">
         <li class="flex items-center">
-          <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+          <a class="text-white hover:text-gray-300 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
             target="_blank" href="https://www.buymeacoffee.com/sharefree.co.in"><span
               class="inline-block ml-2">Support Us</span></a>
         </li>
         <li class="flex items-center">
-          <a class="lg:text-white lg:hover:text-gray-300 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
+          <a class="text-white hover:text-gray-300 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
             href="/login"><span class="inline-block ml-2">Admin</span></a>
         </li>
         <li class="flex items-center">
